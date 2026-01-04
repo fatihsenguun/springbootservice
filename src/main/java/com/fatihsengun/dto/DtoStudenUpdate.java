@@ -1,7 +1,5 @@
 package com.fatihsengun.dto;
 
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,9 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DtoStudent {
-
-
+public class DtoStudenUpdate {
 	private Long id;
 	
 
@@ -24,10 +20,5 @@ public class DtoStudent {
 	private String tckn;
 	
 	private DtoAddress address;
-	
-
-	
-	
-	
 	
 }

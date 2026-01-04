@@ -1,6 +1,9 @@
 package com.fatihsengun.controller.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +16,8 @@ import com.fatihsengun.dto.DtoStudent;
 import com.fatihsengun.dto.DtoStudentIU;
 import com.fatihsengun.services.IStudentService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/rest/api/student")
 public class StudentControllerImpl implements IStudentController {
@@ -22,7 +27,7 @@ public class StudentControllerImpl implements IStudentController {
 	
 	@Override
 	@PostMapping(path = "/add")
-	public DtoStudent saveStudent(@RequestBody DtoStudentIU dtoStudentIU) {
+	public DtoStudent saveStudent(@Valid @RequestBody DtoStudentIU dtoStudentIU) {
 		System.out.println(dtoStudentIU.getFirstName());
 		return studentService.addStudent(dtoStudentIU) ;
 	}
@@ -33,14 +38,24 @@ public class StudentControllerImpl implements IStudentController {
 
 		return studentService.getStudentById(id);
 	}
+	@Override
+	@GetMapping(path = "/delete/{id}")
+	public DtoStudent deleteStudentById(@PathVariable(name ="id") Long id) {
+
+		return studentService.deleteStudentById(id) ;
+	}
 
 	@Override
-	@PostMapping(path = "/update")
-	public DtoStudent updateStudent(@RequestBody DtoStudent dtoStudent) {
+	@PostMapping(path = "/update/{id}")
+	public DtoStudent updateStudent(@RequestBody DtoStudentIU dtoStudentIU, @PathVariable(name = "id") Long id) {
 		
 
-		return studentService.updateStudent(dtoStudent);
+		return studentService.updateStudent(dtoStudentIU,id);
 	}
+
+
+
+	
 	
 
 }
