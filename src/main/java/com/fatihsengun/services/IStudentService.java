@@ -1,7 +1,5 @@
 package com.fatihsengun.services;
 
-import java.util.List;
-
 import com.fatihsengun.dto.DtoStudent;
 import com.fatihsengun.dto.DtoStudentIU;
 

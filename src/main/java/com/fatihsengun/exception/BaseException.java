@@ -1,0 +1,14 @@
+package com.fatihsengun.exception;
+
+public class BaseException extends RuntimeException {
+
+	public BaseException() {
+		
+	}
+	public BaseException(ErrorMessage errorMessage) {
+		super(errorMessage.prepareMessage(errorMessage));
+	}
+	
+	
+	
+}

@@ -1,8 +1,6 @@
 package com.fatihsengun.dto;
 
-import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -27,6 +25,9 @@ public class DtoStudentIU {
 	private String tckn;
 	
 	private DtoAddressIU address;
+	
+	@Min(value = 1,message = "clasroomId cannot be empty")
+	private Long classroomId;
 	
 	
 }

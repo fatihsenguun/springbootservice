@@ -9,18 +9,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DtoStudent {
+public class DtoClassroom {
 
 	private Long id;
-
-	private String firstName;
-
-	private String lastName;
-
-	private String tckn;
-
-	private DtoAddress address;
-
-	private DtoClassroom classroom;
-
+	
+	private String classroomName;
 }
