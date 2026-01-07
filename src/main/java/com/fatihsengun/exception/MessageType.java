@@ -6,11 +6,13 @@ import lombok.Getter;
 public enum MessageType {
 	
 	NO_RECORD_EXIST("1001","Kayıt Bulunamadı"),
-	GENERAL_EXCEPTION("9999","Genel bir hata oluştu");
+	GENERAL_EXCEPTION("9999","Genel bir hata oluştu"),
+	USER_ALREADY_EXISTS("1002","Kullanıcı Kayıtlı!");
 	
 	private String code;
 	
 	private String message;
+	
 	
 	MessageType(String code, String message){
 		this.code=code;

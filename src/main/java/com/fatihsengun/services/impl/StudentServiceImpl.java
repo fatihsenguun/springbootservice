@@ -1,10 +1,14 @@
 package com.fatihsengun.services.impl;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.fatihsengun.dto.DtoAddress;
@@ -35,6 +39,8 @@ public class StudentServiceImpl implements IStudentService {
 
 	private final ClassroomRepository classroomRepository;
 
+	
+	
 	@Override
 	public DtoStudent addStudent(DtoStudentIU dtoStudentIU) {
 		Student student = new Student();
@@ -70,6 +76,8 @@ public class StudentServiceImpl implements IStudentService {
 		return dtoStudent;
 	}
 
+	
+	
 	@Override
 	public DtoStudent getStudentById(Long id) {
 		DtoStudent dtoStudent = new DtoStudent();
@@ -176,6 +184,34 @@ public class StudentServiceImpl implements IStudentService {
 		dtoStudent.setAddress(dtoAddress);
 
 		return dtoStudent;
+	}
+
+	@Override
+	public Page<Student> findAllPageable(Pageable pageable) {
+
+		Page<Student> page = studentRepository.findAll(pageable);
+		
+		return page;
+	}
+	
+	public List<DtoStudent> toDTOList(List<Student> students){
+		List<DtoStudent> list = new ArrayList<>() ;
+		for (Student student : students) {
+			DtoStudent dtoStudent = new DtoStudent();
+			DtoAddress dtoAddress = new DtoAddress();
+			DtoClassroom dtoClassroom = new DtoClassroom();
+			
+			BeanUtils.copyProperties(student, dtoStudent);
+			BeanUtils.copyProperties(student.getClassroom(), dtoClassroom);
+			BeanUtils.copyProperties(student.getAddress(), dtoAddress);
+			
+			dtoStudent.setAddress(dtoAddress);
+			dtoStudent.setClassroom(dtoClassroom);
+			
+			list.add(dtoStudent);
+		}
+		return list;
+		
 	}
 
 }
